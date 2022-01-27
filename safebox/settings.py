@@ -85,11 +85,16 @@ WSGI_APPLICATION = 'safebox.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+postgres://jccunygeazovds:8211673485a7952d6bea867b0bc598d0e2f9992eaa076c8ecffd65ad7e588dd4@ec2-3-225-41-234.compute-1.amazonaws.com:5432/dc41athc1h2hlk
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dc41athc1h2hlk',
+        'HOST': 'ec2-3-225-41-234.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'jccunygeazovds',
+        'PASSWORD' : '8211673485a7952d6bea867b0bc598d0e2f9992eaa076c8ecffd65ad7e588dd4'
     }
 }
 
