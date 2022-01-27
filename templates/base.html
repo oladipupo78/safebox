@@ -1,0 +1,170 @@
+{%load static%}
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Safebox dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link href="{% static 'accounts/assets/images/favicon.png'%}" rel="icon" type="image/png">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/night-mode.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/framework.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/bootstrap.css'%}">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/icons.css'%}">
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- menu -->
+        <div class="page-menu">
+            <!-- btn close on small devices -->
+            <span class="btn-menu-close" uk-toggle="target: #wrapper ; cls: mobile-active"></span>
+            <!-- traiger btn -->
+            <span class="btn-menu-trigger" uk-toggle="target: .page-menu ; cls: menu-large"></span>
+
+            <!-- logo -->
+            <div class="logo uk-visible@s">
+                <a href="dashboard.html"> <i class=" uil-graduation-hat"></i> <span> Safebox</span> </a>
+            </div>
+            <div class="page-menu-inner" data-simplebar>
+                <ul data-submenu-title="Browse">
+                    <li><a href="{% url 'viewfiles'%}"><i class="uil-play-circle"></i> <span> Browse files</span></a> </li>
+                </ul>
+
+                <ul data-submenu-title="User Account">
+                    <li><a href=""><i class="uil-user-circle"></i><span>Account Settings </span></a></li>
+                    <li><a href="{% url 'uploaddocument'%}"><i class="uil-edit-alt"></i> <span>new Upload</span> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+         <!-- Header Container
+        ================================================== -->
+        <header class="header" uk-sticky="top:20 ; cls-active:header-sticky">
+
+            <div class="container">
+                <nav uk-navbar>
+
+                    <!-- left Side Content -->
+                    <div class="uk-navbar-left">
+
+                        <span class="btn-mobile" uk-toggle="target: #wrapper ; cls: mobile-active"></span>
+
+
+
+                        <!-- logo -->
+                        <a href="#" class="logo">
+                            <img src="{% static 'accounts/assets/images/logo-dark.svg'%}" alt="">
+                            <span>Safebox</span>
+                        </a>
+
+                        <!-- breadcrumbs -->
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="#"> Dashboard </a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li>{{u.username}}</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </nav>
+            </div>
+        </header>
+    </div>
+            {%block content%}
+            {%endblock%}
+ <div class="footer">
+                    <div class="uk-grid-collapse" uk-grid>
+                        <div class="uk-width-expand@s uk-first-column">
+                            <p>© 2020 <strong>Safebox</strong>. All Rights Reserved. </p>
+                        </div>
+                        <div class="uk-width-auto@s">
+                            <nav class="footer-nav-icon">
+                                <ul>
+                                    <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
+                                    <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
+                                    <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- For Night mode -->
+    <script>
+        (function (window, document, undefined) {
+            'use strict';
+            if (!('localStorage' in window)) return;
+            var nightMode = localStorage.getItem('gmtNightMode');
+            if (nightMode) {
+                document.documentElement.className += ' night-mode';
+            }
+        })(window, document);
+
+
+        (function (window, document, undefined) {
+
+            'use strict';
+
+            // Feature test
+            if (!('localStorage' in window)) return;
+
+            // Get our newly insert toggle
+            var nightMode = document.querySelector('#night-mode');
+            if (!nightMode) return;
+
+            // When clicked, toggle night mode on or off
+            nightMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.documentElement.classList.toggle('night-mode');
+                if (document.documentElement.classList.contains('night-mode')) {
+                    localStorage.setItem('gmtNightMode', true);
+                    return;
+                }
+                localStorage.removeItem('gmtNightMode');
+            }, false);
+
+        })(window, document);
+    </script>
+
+
+
+    <!-- javaScripts
+    ================================================== -->
+    <script src="{% static 'accounts/assets/js/framework.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/simplebar.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/main.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/bootstrap-select.min.js'%}"></script>
+
+
+</body>
+
+</html>

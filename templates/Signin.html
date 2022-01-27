@@ -1,0 +1,115 @@
+{%load static%}
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Skillsearch</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Courseplus - Professional Learning Management HTML Template">
+
+    <!-- Favicon -->
+    <link href="{% static 'accounts/assets/images/favicon.png'%}" rel="icon" type="image/png">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/night-mode.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/framework.css'%}">
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/bootstrap.css'%}">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'accounts/assets/css/icons.css'%}">
+
+ 
+</head>
+
+
+<body>
+
+
+
+    <!-- Content
+    ================================================== -->
+    <div uk-height-viewport class="uk-flex uk-flex-middle">
+        <div class="uk-width-2-3@m uk-width-1-2@s m-auto rounded">
+            <div class="uk-child-width-1-2@m uk-grid-collapse bg-gradient-grey" uk-grid>
+
+                <!-- column one -->
+                <div class="uk-margin-auto-vertical uk-text-center uk-animation-scale-up p-3 uk-light">
+                    <i class=" uil-graduation-hat icon-large"></i>
+                    <h3 class="mb-4"> Safebox</h3>
+                    <p>The Place You can learn Every Thing. </p>
+                </div>
+
+                <!-- column two -->
+                <div class="uk-card-default p-5 rounded">
+                    <div class="mb-4 uk-text-center">
+                        <h3 class="mb-0"> Welcome back</h3>
+                        <p class="my-2">Login to manage your account.</p>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="uk-form-group">
+                            <label class="uk-form-label"> Email</label>
+
+                            <div class="uk-position-relative w-100">
+                                <span class="uk-form-icon">
+                                    <i class="icon-feather-mail"></i>
+                                </span>
+                                <input class="uk-input" name="email" type="email" placeholder="name@example.com" id="email">
+                            </div>
+
+                        </div>
+
+                        <div class="uk-form-group">
+                            <label class="uk-form-label"> Password</label>
+
+                            <div class="uk-position-relative w-100">
+                                <span class="uk-form-icon">
+                                    <i class="icon-feather-lock"></i>
+                                </span>
+                                <input class="uk-input" name="password" type="password" placeholder="********" id="password">
+                            </div>
+
+                        </div>
+                        <div class="mt-4 uk-flex-middle uk-grid-small" uk-grid>
+                            <div class="uk-width-expand@s">
+                                <p> Dont have account <a href="{%url 'signup'%}">Sign up</a></p>
+                            </div>
+                            <div class="uk-width-auto@s">
+                                <button type="submit" class="btn btn-default" id="login" name="login">Log in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'accounts/assets/js/framework.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/simplebar.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/main.js'%}"></script>
+    <script src="{% static 'accounts/assets/js/bootstrap-select.min.js'%}"></script>
+    <script>
+        $("#login").onclick( function(){
+            var email = $("#email").val();
+            var password = $("#password").val();
+
+            $.ajax({
+              url:  'signin',
+              data:{
+                'email': email
+                'password' : password
+              },
+              });
+        }
+    </script>
+
+
+</body>
+
+</html>

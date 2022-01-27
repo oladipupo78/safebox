@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%load static%}
+
+    {%block content%}
+        <div class="page-content">
+            <div class="container">
+                <h4> Browse files</h4>
+                <div class="uk-grid-large" uk-grid>
+                    <div class="uk-width-3-4@m">
+                            <div class="course-card course-card-list">
+                                {%for file in files%}
+                                <div class="course-card-body">
+                                    <a href="{% url 'publicfiledescription' file.id%}">
+                                        <h4>{{file.name}} </h4>
+                                        <p>{{file.uploaded_by}}</p>
+                                    </a>
+                                </div>
+                                {%endfor%}
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endblock%}

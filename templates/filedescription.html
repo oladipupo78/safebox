@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+    <h2>{{file.name}} uploaded by {{file.uploaded_by}}</h2>
+    <div class="uk-width-auto@s">
+        <a href="{% url 'delete' file.id %}" ><input type="submit" class="btn btn-default" value="delete file"></a>
+        <a href="{% url 'changetype' file.id %}" ><input type="submit" class="btn btn-default" value="change filetype"></a>
+        <a href="{% url 'download' file.id %}" ><input type="submit" class="btn btn-default" value="download zip file"></a>
+    </div>
+
+     <div class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
+         {%for document in documents%}
+         <div class="uk-card-default rounded text-center p-4">
+             <a href="{{document.document_src.url}}" ><h4 class="mb-2 mt-3"> {{document.document_name}} </h4></a>
+         </div>
+         {%endfor%}
+     </div>
+{%endblock%}

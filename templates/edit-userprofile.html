@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%load static%}
+    {%block content%}
+            <div class="page-content-inner">
+
+                <h4>Upload document</h4>
+
+
+                <div uk-grid>
+                    <div class="uk-width-expand@m">
+
+                        <div class="uk-card-default rounded mt-4">
+                            <div class="uk-position-center">
+                                   <form method="POST" enctype="multipart/form-data" action="{%url 'uploaddocument'%}" >
+                                        {% csrf_token %}
+                                       <h3>enter document name:</h3> <input name="document_name" id="document_name" type="text">
+                                       <br>
+                                        <input name="document_src" accept=".*/*" id="document_src" type="file">
+                                       <div>
+                                           <h4>select file</h4>
+                                           <select id="file_name" name="file_name">
+                                                {%for file in files%}
+                                                <option value="{{file.name}}">{{file.name}}</option>
+                                                {%endfor%}
+                                           </select>
+                                       </div>
+                                        <button type="submit" class="btn btn-default m-auto mb-3">upload document</button>
+                                   </form>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+    {%endblock%}

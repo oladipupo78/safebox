@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{%load static%}
+        {%block content%}
+            <div class="page-content-inner">
+                <h2>Welcome {{member.name}}</h2>
+
+                <div uk-grid>
+                    <div class="uk-width-expand@m">
+                       <div class="uk-card-default rounded">
+                            <div class="uk-flex uk-flex-between uk-flex-middle py-3 px-4">
+                                <h5 class="mb-0"> Public Files </h5>
+                                <a href="#" uk-tooltip="title:Edit Account; pos: left"> <i class="icon-feather-settings"></i> </a>
+                            </div>
+                            <hr class="m-0">
+                            <a class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
+                                {%for file in publicfiles%}
+                                    <div class="uk-card-default rounded text-center p-4">
+                                        <h2> {{file.name}} </h2>
+                                        <h6> {{file.filetype}} </h6>
+                                    </div>
+                                {%endfor%}
+                            </a>
+                       </div>
+                    </div>
+                    </div>
+                    <div class="uk-width-expand@m">
+                        <div class="uk-card-default rounded">
+                            <div class="uk-flex uk-flex-between uk-flex-middle py-3 px-4">
+                                <h5 class="mb-0"> Private Files </h5>
+                                    <a href= "#" uk-tooltip="title:Edit Account; pos: left"> <i class="icon-feather-settings"></i> </a>
+                            </div>
+                            <hr class="m-0">
+                            <div class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
+                                {%for file in privatefiles%}
+                                <a href="{% url 'filedescription' file.id%}">
+                                <div class="uk-card-default rounded text-center p-4">
+                                    <h2> {{file.name}} </h2>
+                                    <h6 > {{file.filetype}} </h6>
+                                </div>
+                                </a>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <form id="newfile" method="post" action="{% url 'newfile'%}">
+                        {% csrf_token %}
+                        <h3>enter filename:</h3> <input name="file_name" id="file_name" type="text">
+                        <div>
+                            <h4>select filetype</h4>
+                            <select id="file_type" name="file_type">
+                                <option value="public">public</option>
+                                <option value="private">private</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default m-auto mb-3">create file</button>
+                    </form>
+                </div>
+            </div>
+        {%endblock%}
